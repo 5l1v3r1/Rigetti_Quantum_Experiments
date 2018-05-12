@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# taken from https://www.youtube.com/watch?v=LSA3pYZtRGg
+
 from pyquil.quilatom import QubitPlaceholder
 from pyquil.quil import Program
 from pyquil.api import QVMConnection 

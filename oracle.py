@@ -3,6 +3,7 @@ from pyquil.quil import Program
 from pyquil.api import QVMConnection 
 from pyquil.gates import CNOT, H,X,Z,MEASURE
 
+# s is the secret
 s = 14 # 1110
 
 q0 = QubitPlaceholder()
@@ -13,6 +14,7 @@ tmp = QubitPlaceholder()
 
 prog = Program(X(tmp),H(q0),H(q1),H(q2),H(q3),H(tmp))
 
+# this is the oracle, think of it as a blackbox
 prog += Program(CNOT(q3, tmp),CNOT(q2,tmp),CNOT(q1,tmp))
 
 prog += Program(H(q0),H(q1),H(q2),H(q3),H(tmp))

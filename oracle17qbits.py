@@ -3,6 +3,7 @@ from pyquil.quil import Program,address_qubits
 from pyquil.api import QVMConnection 
 from pyquil.gates import CNOT, H,X,Z,MEASURE
 
+# this is the secret
 s = int(b'1100110011001100',2) # 1110
 
 class_readouts = [15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0]
@@ -11,17 +12,17 @@ qregs = QubitPlaceholder().register(16)
 tmp = QubitPlaceholder().register(1)
 
 prog = Program(X(tmp[0]))
-prog += Program(H(tmp[0]))
 
+prog += Program(H(tmp[0]))
 for i in range(0,len(qregs)):
     prog += Program(H(qregs[i]))
 
+# this is the oracle, think of it as a blackbo
 for i in range(0,len(qregs)):
     if s & (1 << i):
         prog += Program(CNOT(qregs[i],tmp[0]))
 
 prog += Program(H(tmp[0]))
-
 for i in range(0,len(qregs)):
     prog += Program(H(qregs[i]))
 
